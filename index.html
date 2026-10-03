@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameHub — Choose Your Gaming Website</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070914;
+    --card:#111526;
+    --card2:#151a2d;
+    --text:#f5f7ff;
+    --muted:#9ba3bb;
+    --primary:#7c5cff;
+    --primary2:#00d4ff;
+    --border:rgba(255,255,255,.09);
+    --shadow:0 18px 50px rgba(0,0,0,.28);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(124,92,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(0,212,255,.13),transparent 28%),
+        linear-gradient(135deg,#070914,#0c1020 55%,#080b17);
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:rgba(7,9,20,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:23px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    font-size:23px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:0 8px 30px rgba(124,92,255,.3);
+}
+
+.logo span{
+    color:#8c74ff;
+}
+
+.header-badge{
+    padding:9px 16px;
+    border-radius:30px;
+    background:rgba(124,92,255,.12);
+    border:1px solid rgba(124,92,255,.25);
+    color:#b9adff;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1150px;
+    margin:auto;
+    padding:72px 20px 35px;
+    text-align:center;
+}
+
+.hero-badge{
+    display:inline-flex;
+    padding:9px 16px;
+    border-radius:30px;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
+    color:#a99cff;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:21px;
+}
+
+.hero h1{
+    font-size:clamp(40px,6vw,72px);
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#8c70ff,#00d4ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+}
+
+/* SEARCH */
+
+.search-area{
+    max-width:760px;
+    margin:32px auto 20px;
+    position:relative;
+}
+
+.search-box{
+    width:100%;
+    height:62px;
+    border-radius:19px;
+    border:1px solid var(--border);
+    outline:none;
+    padding:0 22px 0 58px;
+    background:rgba(255,255,255,.06);
+    color:white;
+    font-size:16px;
+    box-shadow:var(--shadow);
+}
+
+.search-box::placeholder{
+    color:#777f99;
+}
+
+.search-box:focus{
+    border-color:#8067ff;
+    box-shadow:0 0 0 4px rgba(124,92,255,.1);
+}
+
+.search-icon{
+    position:absolute;
+    left:21px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:21px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    max-width:1200px;
+    margin:10px auto 38px;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.category-btn{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.045);
+    color:#aeb5ca;
+    border-radius:25px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.category-btn:hover,
+.category-btn.active{
+    background:linear-gradient(135deg,var(--primary),#6250d8);
+    color:white;
+    border-color:transparent;
+    transform:translateY(-2px);
+}
+
+/* MAIN */
+
+main{
+    max-width:1250px;
+    margin:auto;
+    padding:0 20px 70px;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-top h2{
+    font-size:25px;
+}
+
+.result-count{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* GRID */
+
+.game-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+}
+
+/* CARD */
+
+.game-card{
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025)),
+        var(--card);
+    border:1px solid var(--border);
+    border-radius:21px;
+    padding:21px;
+    cursor:pointer;
+    transition:.25s;
+    min-height:225px;
+}
+
+.game-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(124,92,255,.45);
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+}
+
+.game-card::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    right:-65px;
+    bottom:-65px;
+    border-radius:50%;
+    background:rgba(124,92,255,.09);
+}
+
+.game-icon{
+    width:61px;
+    height:61px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    background:linear-gradient(135deg,rgba(124,92,255,.2),rgba(0,212,255,.09));
+    border:1px solid rgba(124,92,255,.22);
+    color:#b8aaff;
+    font-size:19px;
+    font-weight:900;
+    margin-bottom:17px;
+}
+
+.game-name{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.game-category{
+    color:#858da6;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.game-recommendation{
+    color:#b8bed0;
+    font-size:12px;
+    line-height:1.5;
+    min-height:36px;
+}
+
+.visit{
+    margin-top:15px;
+    color:#9b8aff;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* EMPTY */
+
+.empty{
+    display:none;
+    text-align:center;
+    padding:70px 20px;
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:38px 20px;
+    text-align:center;
+    background:#050710;
+    border-top:1px solid var(--border);
+    color:#8c94aa;
+}
+
+footer strong{
+    color:white;
+}
+
+footer p{
+    margin-top:8px;
+    font-size:13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+    .game-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+    header{
+        padding:17px 5%;
+    }
+
+    .header-badge{
+        display:none;
+    }
+
+    .hero{
+        padding-top:50px;
+    }
+
+    .game-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .game-card{
+        padding:17px;
+    }
+}
+
+@media(max-width:480px){
+    .game-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .section-top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+```
+<div class="logo">
+    <div class="logo-icon">🎮</div>
+    Game<span>Hub</span>
+</div>
+
+<div class="header-badge">
+    60+ Gaming Platforms
+</div>
+```
+
+</header>
+
+<section class="hero">
+
+```
+<div class="hero-badge">
+    🎮 Your Gateway to Online Gaming
+</div>
+
+<h1>
+    Choose Your <span>Gaming</span> Website
+</h1>
+
+<p>
+    Apni pasand ka gaming platform choose karein.
+    Kisi bhi card par click karein aur directly us website par chale jayen.
+</p>
+
+<div class="search-area">
+    <span class="search-icon">🔎</span>
+
+    <input
+        id="searchInput"
+        class="search-box"
+        type="text"
+        placeholder="Search gaming website..."
+        autocomplete="off"
+    >
+</div>
+```
+
+</section>
+
+<div class="categories">
+
+```
+<button class="category-btn active" data-category="All">All</button>
+
+<button class="category-btn" data-category="Browser">Browser</button>
+
+<button class="category-btn" data-category="Arcade">Arcade</button>
+
+<button class="category-btn" data-category="Action">Action</button>
+
+<button class="category-btn" data-category="Racing">Racing</button>
+
+<button class="category-btn" data-category="Sports">Sports</button>
+
+<button class="category-btn" data-category="Puzzle">Puzzle</button>
+
+<button class="category-btn" data-category="Multiplayer">Multiplayer</button>
+
+<button class="category-btn" data-category="Indie">Indie</button>
+
+<button class="category-btn" data-category="Adventure">Adventure</button>
+```
+
+</div>
+
+<main>
+
+```
+<div class="section-top">
+
+    <h2>Popular Gaming Platforms</h2>
+
+    <div class="result-count" id="resultCount"></div>
+
+</div>
+
+<div class="game-grid" id="gameGrid"></div>
+
+<div class="empty" id="emptyState">
+
+    <div class="empty-icon">🔍</div>
+
+    <h3>No gaming website found</h3>
+
+    <p>Try searching with another name.</p>
+
+</div>
+```
+
+</main>
+
+<footer>
+
+```
+<strong>GameHub</strong>
+
+<p>
+    A simple gateway to popular gaming platforms.
+</p>
+```
+
+</footer>
+
+<script>
+
+const gamingSites = [
+
+    {
+        name:"CrazyGames",
+        category:"Browser",
+        icon:"CG",
+        recommendation:"Great all-round browser gaming platform with action, racing, sports, puzzle and multiplayer games.",
+        url:"https://www.crazygames.com/"
+    },
+
+    {
+        name:"Poki",
+        category:"Browser",
+        icon:"PK",
+        recommendation:"Excellent choice for quick browser games, sports, puzzle, arcade and casual games.",
+        url:"https://poki.com/"
+    },
+
+    {
+        name:"itch.io",
+        category:"Indie",
+        icon:"IO",
+        recommendation:"Huge indie game community with creative and experimental games.",
+        url:"https://itch.io/"
+    },
+
+    {
+        name:"Game Jolt",
+        category:"Indie",
+        icon:"GJ",
+        recommendation:"Good place to discover indie games and gaming communities.",
+        url:"https://gamejolt.com/"
+    },
+
+    {
+        name:"Newgrounds",
+        category:"Arcade",
+        icon:"NG",
+        recommendation:"Classic internet gaming platform with many creative browser experiences.",
+        url:"https://www.newgrounds.com/games"
+    },
+
+    {
+        name:"Kongregate",
+        category:"Browser",
+        icon:"KG",
+        recommendation:"Classic browser gaming destination with many casual and arcade experiences.",
+        url:"https://www.kongregate.com/"
+    },
+
+    {
+        name:"Armor Games",
+        category:"Browser",
+        icon:"AG",
+        recommendation:"Popular browser platform for strategy, puzzle, adventure and casual games.",
+        url:"https://armorgames.com/"
+    },
+
+    {
+        name:"Miniclip",
+        category:"Arcade",
+        icon:"MC",
+        recommendation:"Well-known gaming platform with arcade, sports and casual experiences.",
+        url:"https://www.miniclip.com/"
+    },
+
+    {
+        name:"Y8",
+        category:"Browser",
+        icon:"Y8",
+        recommendation:"Large browser-game library covering many different genres.",
+        url:"https://www.y8.com/"
+    },
+
+    {
+        name:"Kizi",
+        category:"Arcade",
+        icon:"KZ",
+        recommendation:"Simple browser gaming platform with arcade and casual games.",
+        url:"https://kizi.com/"
+    },
+
+    {
+        name:"Friv",
+        category:"Arcade",
+        icon:"FR",
+        recommendation:"Quick-access collection of casual and browser games.",
+        url:"https://www.friv.com/"
+    },
+
+    {
+        name:"Coolmath Games",
+        category:"Puzzle",
+        icon:"CM",
+        recommendation:"Excellent for puzzle, logic, strategy and casual games.",
+        url:"https://www.coolmathgames.com/"
+    },
+
+    {
+        name:"Addicting Games",
+        category:"Arcade",
+        icon:"AD",
+        recommendation:"Large collection of casual and quick-play browser games.",
+        url:"https://www.addictinggames.com/"
+    },
+
+    {
+        name:"Pogo",
+        category:"Arcade",
+        icon:"PG",
+        recommendation:"Casual games including puzzles, cards and classic-style experiences.",
+        url:"https://www.pogo.com/"
+    },
+
+    {
+        name:"CrazyGames Kids",
+        category:"Browser",
+        icon:"CK",
+        recommendation:"Family-oriented browser gaming collection.",
+        url:"https://www.crazygames.com/"
+    },
+
+    {
+        name:"A10",
+        category:"Arcade",
+        icon:"A10",
+        recommendation:"Browser games across action, puzzle, racing and casual genres.",
+        url:"https://www.a10.com/"
+    },
+
+    {
+        name:"Silvergames",
+        category:"Browser",
+        icon:"SG",
+        recommendation:"Large collection of free browser games across many genres.",
+        url:"https://www.silvergames.com/"
+    },
+
+    {
+        name:"Kongregate Games",
+        category:"Multiplayer",
+        icon:"KG",
+        recommendation:"Discover multiplayer and casual browser experiences.",
+        url:"https://www.kongregate.com/"
+    },
+
+    {
+        name:"Gameflare",
+        category:"Browser",
+        icon:"GF",
+        recommendation:"Browser gaming collection with action, racing and casual games.",
+        url:"https://www.gameflare.com/"
+    },
+
+    {
+        name:"TwoPlayerGames",
+        category:"Multiplayer",
+        icon:"2P",
+        recommendation:"Great destination when you want local two-player browser games.",
+        url:"https://www.twoplayergames.org/"
+    },
+
+    {
+        name:"Lagged",
+        category:"Arcade",
+        icon:"LG",
+        recommendation:"Quick browser games with arcade, puzzle and casual categories.",
+        url:"https://lagged.com/"
+    },
+
+    {
+        name:"GamePix",
+        category:"Browser",
+        icon:"GP",
+        recommendation:"Large HTML5 browser game collection for quick play.",
+        url:"https://www.gamepix.com/"
+    },
+
+    {
+        name:"GameMonetize",
+        category:"Browser",
+        icon:"GM",
+        recommendation:"Browser gaming platform with a broad selection of HTML5 games.",
+        url:"https://gamemonetize.com/"
+    },
+
+    {
+        name:"Poki Kids",
+        category:"Browser",
+        icon:"PK",
+        recommendation:"Simple browser gaming experience with many casual titles.",
+        url:"https://poki.com/"
+    },
+
+    {
+        name:"Mouse Games",
+        category:"Arcade",
+        icon:"MG",
+        recommendation:"Simple browser-based games for quick sessions.",
+        url:"https://www.mousegames.com/"
+    },
+
+    {
+        name:"Plays.org",
+        category:"Arcade",
+        icon:"PO",
+        recommendation:"Collection of simple online arcade and casual games.",
+        url:"https://plays.org/"
+    },
+
+    {
+        name:"Agame",
+        category:"Browser",
+        icon:"AG",
+        recommendation:"Browser games covering puzzle, action, racing and casual genres.",
+        url:"https://www.agame.com/"
+    },
+
+    {
+        name:"GameDistribution",
+        category:"Browser",
+        icon:"GD",
+        recommendation:"Large HTML5 gaming network with many browser titles.",
+        url:"https://gamedistribution.com/"
+    },
+
+    {
+        name:"CrazyGames Racing",
+        category:"Racing",
+        icon:"CR",
+        recommendation:"Excellent starting point for browser racing and driving games.",
+        url:"https://www.crazygames.com/t/racing"
+    },
+
+    {
+        name:"CrazyGames Sports",
+        category:"Sports",
+        icon:"CS",
+        recommendation:"Great choice for browser sports games including football, basketball and more.",
+        url:"https://www.crazygames.com/c/sports"
+    },
+
+    {
+        name:"CrazyGames Action",
+        category:"Action",
+        icon:"CA",
+        recommendation:"Recommended for fast-paced action and adventure-style browser games.",
+        url:"https://www.crazygames.com/c/action"
+    },
+
+    {
+        name:"CrazyGames Fighting",
+        category:"Action",
+        icon:"CF",
+        recommendation:"Good destination for browser fighting and competitive action games.",
+        url:"https://www.crazygames.com/t/fighting"
+    },
+
+    {
+        name:"Poki Sports",
+        category:"Sports",
+        icon:"PS",
+        recommendation:"Quick sports games including football, basketball and other casual sports.",
+        url:"https://poki.com/en/sports"
+    },
+
+    {
+        name:"Poki Puzzle",
+        category:"Puzzle",
+        icon:"PP",
+        recommendation:"Recommended for relaxing and brain-teasing puzzle games.",
+        url:"https://poki.com/en/puzzle"
+    },
+
+    {
+        name:"Poki Racing",
+        category:"Racing",
+        icon:"PR",
+        recommendation:"A good choice for quick browser racing experiences.",
+        url:"https://poki.com/en/racing"
+    },
+
+    {
+        name:"Steam",
+        category:"Adventure",
+        icon:"ST",
+        recommendation:"Huge gaming marketplace and community with games across almost every genre.",
+        url:"https://store.steampowered.com/"
+    },
+
+    {
+        name:"Epic Games Store",
+        category:"Adventure",
+        icon:"EG",
+        recommendation:"Major PC gaming store with a large selection of games.",
+        url:"https://store.epicgames.com/"
+    },
+
+    {
+        name:"GOG",
+        category:"Adventure",
+        icon:"GG",
+        recommendation:"Gaming store known for classic and modern PC games.",
+        url:"https://www.gog.com/"
+    },
+
+    {
+        name:"Ubisoft",
+        category:"Adventure",
+        icon:"UB",
+        recommendation:"Official gaming platform for Ubisoft titles and services.",
+        url:"https://www.ubisoft.com/"
+    },
+
+    {
+        name:"EA Games",
+        category:"Sports",
+        icon:"EA",
+        recommendation:"Official gaming destination for many sports and entertainment games.",
+        url:"https://www.ea.com/games"
+    },
+
+    {
+        name:"Roblox",
+        category:"Multiplayer",
+        icon:"RB",
+        recommendation:"Massive user-created gaming platform with countless experiences.",
+        url:"https://www.roblox.com/"
+    },
+
+    {
+        name:"Minecraft",
+        category:"Adventure",
+        icon:"MI",
+        recommendation:"Creative sandbox gaming experience with exploration and building.",
+        url:"https://www.minecraft.net/"
+    },
+
+    {
+        name:"Epic Games",
+        category:"Multiplayer",
+        icon:"EP",
+        recommendation:"Explore popular multiplayer and PC gaming experiences.",
+        url:"https://www.epicgames.com/"
+    },
+
+    {
+        name:"Xbox",
+        category:"Multiplayer",
+        icon:"XB",
+        recommendation:"Microsoft gaming platform with games, services and community features.",
+        url:"https://www.xbox.com/"
+    },
+
+    {
+        name:"PlayStation",
+        category:"Adventure",
+        icon:"PS",
+        recommendation:"Official PlayStation gaming destination.",
+        url:"https://www.playstation.com/"
+    },
+
+    {
+        name:"Nintendo",
+        category:"Adventure",
+        icon:"NT",
+        recommendation:"Official Nintendo gaming destination for its games and systems.",
+        url:"https://www.nintendo.com/"
+    },
+
+    {
+        name:"GameBanana",
+        category:"Indie",
+        icon:"GB",
+        recommendation:"Gaming community for mods, resources and custom content.",
+        url:"https://gamebanana.com/"
+    },
+
+    {
+        name:"Mod DB",
+        category:"Indie",
+        icon:"MD",
+        recommendation:"Large community database for game modifications and projects.",
+        url:"https://www.moddb.com/"
+    },
+
+    {
+        name:"IndieDB",
+        category:"Indie",
+        icon:"ID",
+        recommendation:"Great place to discover independent game projects.",
+        url:"https://www.indiedb.com/"
+    },
+
+    {
+        name:"Karmatic",
+        category:"Arcade",
+        icon:"KA",
+        recommendation:"Online entertainment and browser gaming destination.",
+        url:"https://karmatic.com/"
+    },
+
+    {
+        name:"Not Doppler",
+        category:"Browser",
+        icon:"ND",
+        recommendation:"Browser gaming site focused on online game discovery.",
+        url:"https://www.notdoppler.com/"
+    },
+
+    {
+        name:"PrimaryGames",
+        category:"Puzzle",
+        icon:"PG",
+        recommendation:"Browser games with puzzles, learning and casual experiences.",
+        url:"https://www.primarygames.com/"
+    },
+
+    {
+        name:"Funbrain",
+        category:"Puzzle",
+        icon:"FB",
+        recommendation:"Games and interactive experiences with a learning focus.",
+        url:"https://www.funbrain.com/"
+    },
+
+    {
+        name:"ABCya",
+        category:"Puzzle",
+        icon:"AB",
+        recommendation:"Interactive games and learning activities.",
+        url:"https://www.abcya.com/"
+    },
+
+    {
+        name:"PBS Kids Games",
+        category:"Puzzle",
+        icon:"PBS",
+        recommendation:"Family-friendly games and interactive experiences.",
+        url:"https://pbskids.org/games/"
+    },
+
+    {
+        name:"National Geographic Kids",
+        category:"Adventure",
+        icon:"NG",
+        recommendation:"Interactive educational games and activities.",
+        url:"https://kids.nationalgeographic.com/games/"
+    },
+
+    {
+        name:"Disney Games",
+        category:"Adventure",
+        icon:"DG",
+        recommendation:"Official Disney gaming and interactive entertainment.",
+        url:"https://games.disney.com/"
+    },
+
+    {
+        name:"Cartoon Network Games",
+        category:"Arcade",
+        icon:"CN",
+        recommendation:"Cartoon-themed games and interactive experiences.",
+        url:"https://www.cartoonnetwork.com/games/"
+    },
+
+    {
+        name:"Nickelodeon Games",
+        category:"Arcade",
+        icon:"NK",
+        recommendation:"Games and interactive experiences based on Nickelodeon content.",
+        url:"https://www.nick.com/games"
+    },
+
+    {
+        name:"Khan Academy",
+        category:"Puzzle",
+        icon:"KA",
+        recommendation:"Educational platform with interactive learning activities.",
+        url:"https://www.khanacademy.org/"
+    },
+
+    {
+        name:"Scratch",
+        category:"Indie",
+        icon:"SC",
+        recommendation:"Explore and play community-created interactive projects.",
+        url:"https://scratch.mit.edu/"
+    },
+
+    {
+        name:"CrazyGames Multiplayer",
+        category:"Multiplayer",
+        icon:"CM",
+        recommendation:"Great place to find browser multiplayer games and play with friends.",
+        url:"https://www.crazygames.com/t/multiplayer"
+    }
+
+];
+
+
+const grid = document.getElementById("gameGrid");
+const searchInput = document.getElementById("searchInput");
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
+
+let selectedCategory = "All";
+
+
+function renderGames(){
+
+    const searchTerm =
+        searchInput.value.toLowerCase().trim();
+
+    const filtered =
+        gamingSites.filter(site => {
+
+            const matchesSearch =
+                site.name.toLowerCase().includes(searchTerm) ||
+                site.category.toLowerCase().includes(searchTerm) ||
+                site.recommendation.toLowerCase().includes(searchTerm);
+
+            const matchesCategory =
+                selectedCategory === "All" ||
+                site.category === selectedCategory;
+
+            return matchesSearch && matchesCategory;
+        });
+
+
+    grid.innerHTML = "";
+
+    resultCount.textContent =
+        `${filtered.length} platform${filtered.length !== 1 ? "s" : ""}`;
+
+
+    if(filtered.length === 0){
+
+        emptyState.style.display = "block";
+
+        return;
+    }
+
+
+    emptyState.style.display = "none";
+
+
+    filtered.forEach(site => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "game-card";
+
+
+        card.innerHTML = `
+
+            <div class="game-icon">
+                ${site.icon}
+            </div>
+
+            <div class="game-name">
+                ${site.name}
+            </div>
+
+            <div class="game-category">
+                ${site.category}
+            </div>
+
+            <div class="game-recommendation">
+                ${site.recommendation}
+            </div>
+
+            <div class="visit">
+                Visit Gaming Website →
+            </div>
+
+        `;
+
+
+        card.addEventListener("click",() => {
+
+            window.open(
+                site.url,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        });
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+searchInput.addEventListener(
+    "input",
+    renderGames
+);
+
+
+document
+.querySelectorAll(".category-btn")
+.forEach(button => {
+
+    button.addEventListener("click",() => {
+
+        document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+        button.classList.add("active");
+
+
+        selectedCategory =
+            button.dataset.category;
+
+
+        renderGames();
+
+    });
+
+});
+
+
+renderGames();
+
+</script>
+
+</body>
+</html>
